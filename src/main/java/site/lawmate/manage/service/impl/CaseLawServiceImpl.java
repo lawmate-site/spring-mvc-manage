@@ -7,6 +7,7 @@ import site.lawmate.manage.domain.dto.CaseLawDto;
 import site.lawmate.manage.domain.dto.SearchCriteria;
 import site.lawmate.manage.repository.CaseLawRepository;
 import site.lawmate.manage.service.CaseLawService;
+import site.lawmate.user.domain.dto.UserDto;
 
 import java.util.List;
 
@@ -30,4 +31,6 @@ public class CaseLawServiceImpl implements CaseLawService {
     public List<CaseLawDto> getCaseLawListByKeyword(SearchCriteria criteria) {
         return caselawRepository.getCaseLawListByKeyword(criteria);
     }
+
+
 }

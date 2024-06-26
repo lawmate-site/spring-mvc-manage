@@ -8,6 +8,7 @@ import site.lawmate.manage.domain.dto.CaseLawDetailDto;
 import site.lawmate.manage.domain.dto.CaseLawDto;
 import site.lawmate.manage.domain.dto.SearchCriteria;
 import site.lawmate.manage.service.CaseLawService;
+import site.lawmate.user.domain.dto.UserDto;
 
 import java.util.List;
 
@@ -36,5 +37,6 @@ public class CaseLawController {
     public ResponseEntity<List<CaseLawDto>> getCaseLawListByKeyword(@RequestBody SearchCriteria searchCriteria) {
         return ResponseEntity.ok(caselawService.getCaseLawListByKeyword(searchCriteria));
     }
+
 
 }

@@ -11,6 +11,8 @@ import site.lawmate.manage.domain.dto.SearchCriteria;
 import site.lawmate.manage.domain.model.QCaseLaw;
 import site.lawmate.manage.domain.model.QCaseLawDetail;
 import site.lawmate.manage.repository.CaseLawDao;
+import site.lawmate.user.domain.dto.UserDto;
+import site.lawmate.user.domain.model.QUser;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class CaseLawDaoImpl implements CaseLawDao {
 
     private final JPAQueryFactory factory;
     private final QCaseLaw caseLaw = QCaseLaw.caseLaw;
+
     private final QCaseLawDetail caseLawDetail = QCaseLawDetail.caseLawDetail;
     @Override
     public List<CaseLawDto> getCaseLawList() {
@@ -79,4 +82,5 @@ public class CaseLawDaoImpl implements CaseLawDao {
                 .orderBy(caseLaw.serialNumber.desc())
                 .fetch();
     }
+
 }
