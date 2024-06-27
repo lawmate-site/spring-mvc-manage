@@ -30,13 +30,13 @@ public class ManageController {
         manageService.saveUserStats();
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/all")
     public ResponseEntity<List<UserStatsDto>> findAll() {
         log.info("findAll");
         return ResponseEntity.ok(manageService.findAll());
     }
 
-    @GetMapping("/findByMonth")
+    @GetMapping("/month")
     public ResponseEntity<List<UserStatsDto>> findByMonth() {
         log.info("findByMonth");
         return ResponseEntity.ok(manageService.findByMonth());

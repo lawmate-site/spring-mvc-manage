@@ -22,13 +22,13 @@ public class CaseLawController {
 
     private final CaseLawService caselawService;
 
-    @GetMapping("/list")
+    @GetMapping("/all")
     public ResponseEntity<List<CaseLawDto>> getCaseLawList() {
         return ResponseEntity.ok(caselawService.getCaseLawList());
     }
 
-    @GetMapping("/detail")
-    public ResponseEntity<CaseLawDetailDto> getCaseLawDetail(@RequestParam("serialNumber") String serialNumber) {
+    @GetMapping("/{serialNumber}")
+    public ResponseEntity<CaseLawDetailDto> getCaseLawDetail(@PathVariable("serialNumber") String serialNumber) {
         log.info("serialNumber: {}", serialNumber);
         return ResponseEntity.ok(caselawService.getCaseLawDetail(serialNumber));
     }
