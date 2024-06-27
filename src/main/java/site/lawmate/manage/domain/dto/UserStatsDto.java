@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,13 +15,12 @@ import org.springframework.stereotype.Component;
 @Builder
 public class UserStatsDto {
 
-    private String date; // 날짜
+    private LocalDate date; // 날짜
     private Long newUserCount; // 신규 가입자 수
     private Long increaseRate; // 증가율
-
     private Integer month;
-    private String year;
-    private String week;
+    private Integer year;
+    private Integer week;
     private Long increaseRateAverage;
 
 }

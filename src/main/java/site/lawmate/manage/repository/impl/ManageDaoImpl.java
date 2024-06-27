@@ -50,13 +50,13 @@ public class ManageDaoImpl implements ManageDao {
     public List<UserStatsDto> getUserStatsByMonth() {
         return factory.select(
                 Projections.fields(UserStatsDto.class,
-                        userStats.date.month().as("month"),
+                        userStats.date.yearMonth().as("month"),
                         userStats.newUserCount.sum().as("newUserCount"),
                         userStats.increaseRate.avg().round().longValue().as("increaseRateAverage")
         ))
                 .from(userStats)
-                .groupBy(userStats.date.month())
-                .orderBy(userStats.date.month().desc())
+                .groupBy(userStats.date.yearMonth())
+                .orderBy(userStats.date.yearMonth().desc())
                 .fetch();
     }
 

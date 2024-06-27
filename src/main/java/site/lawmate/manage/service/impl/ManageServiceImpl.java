@@ -27,7 +27,7 @@ public class ManageServiceImpl implements ManageService {
     @Override
     public List<UserStatsDto> findAll() {
         return manageRepository.findAll().stream().map(i -> UserStatsDto.builder()
-                .date(i.getDate().toString())
+                .date(i.getDate())
                 .newUserCount(i.getNewUserCount())
                 .increaseRate(i.getIncreaseRate())
                 .build()

@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/user/stats")
 public class ManageController {
 
     private final ManageService manageService;
