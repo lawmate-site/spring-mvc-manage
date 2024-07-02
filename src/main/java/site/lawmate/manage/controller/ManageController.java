@@ -42,4 +42,10 @@ public class ManageController {
         return ResponseEntity.ok(manageService.findByMonth());
     }
 
+    @GetMapping("/gender")
+    public ResponseEntity<?> getGenderStats() {
+        log.info("getGenderStats");
+        return ResponseEntity.ok(manageService.getGenderStats());
+    }
+
 }

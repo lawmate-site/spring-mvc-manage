@@ -9,6 +9,7 @@ import site.lawmate.manage.service.ManageService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -37,5 +38,10 @@ public class ManageServiceImpl implements ManageService {
     @Override
     public List<UserStatsDto> findByMonth() {
         return manageRepository.getUserStatsByMonth();
+    }
+
+    @Override
+    public Map<String, Long> getGenderStats() {
+        return Map.of("남성", manageRepository.getMaleCount(), "여성", manageRepository.getFemaleCount());
     }
 }

@@ -14,6 +14,7 @@ import site.lawmate.user.domain.model.QUser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +59,22 @@ public class ManageDaoImpl implements ManageDao {
                 .groupBy(userStats.date.yearMonth())
                 .orderBy(userStats.date.yearMonth().desc())
                 .fetch();
+    }
+
+    @Override
+    public Long getMaleCount() {
+        return factory.select(user.count())
+                .from(user)
+                .where(user.gender.eq("남자"))
+                .fetchOne();
+    }
+
+    @Override
+    public Long getFemaleCount() {
+        return factory.select(user.count())
+                .from(user)
+                .where(user.gender.eq("여자"))
+                .fetchOne();
     }
 
 
