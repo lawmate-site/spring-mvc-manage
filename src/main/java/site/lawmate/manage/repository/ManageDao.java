@@ -15,4 +15,6 @@ public interface ManageDao{
     Long getMaleCount();
     Long getFemaleCount();
 
+    Map<String, Long> getUserCountByAgeGroup();
+
 }

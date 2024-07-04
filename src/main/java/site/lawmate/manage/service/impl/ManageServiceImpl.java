@@ -8,6 +8,7 @@ import site.lawmate.manage.repository.ManageRepository;
 import site.lawmate.manage.service.ManageService;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,8 +41,14 @@ public class ManageServiceImpl implements ManageService {
         return manageRepository.getUserStatsByMonth();
     }
 
+
     @Override
-    public Map<String, Long> getGenderStats() {
-        return Map.of("남성", manageRepository.getMaleCount(), "여성", manageRepository.getFemaleCount());
+    public Map<String, Long> getUserTotalStats() {
+        Map<String, Long> userTotalStats = manageRepository.getUserCountByAgeGroup();
+        userTotalStats.put("Total", manageRepository.getTotalUserCount());
+        userTotalStats.put("Male", manageRepository.getMaleCount());
+        userTotalStats.put("Female", manageRepository.getFemaleCount());
+        return userTotalStats;
     }
+
 }

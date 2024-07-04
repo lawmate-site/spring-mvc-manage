@@ -12,6 +12,7 @@ import site.lawmate.manage.domain.dto.UserStatsDto;
 import site.lawmate.manage.service.ManageService;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -43,9 +44,9 @@ public class ManageController {
     }
 
     @GetMapping("/gender")
-    public ResponseEntity<?> getGenderStats() {
-        log.info("getGenderStats");
-        return ResponseEntity.ok(manageService.getGenderStats());
+    public ResponseEntity<Map<String,Long>> getUserTotalStats() {
+        log.info("getUserTotalStats");
+        return ResponseEntity.ok(manageService.getUserTotalStats());
     }
 
 }

@@ -1,8 +1,9 @@
 package site.lawmate.manage.repository.impl;
 
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.core.types.dsl.StringTemplate;
+import com.querydsl.core.types.dsl.*;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,10 +14,8 @@ import site.lawmate.user.domain.model.QUser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -77,5 +76,30 @@ public class ManageDaoImpl implements ManageDao {
                 .fetchOne();
     }
 
+    @Override
+    public Map<String, Long> getUserCountByAgeGroup() {
+        Map<String, Long> ageGroupMap = new HashMap<>();
+        List<Tuple> ageGroupList = factory.select(user.age, user.count())
+                .from(user)
+                .groupBy(user.age)
+                .fetch();
+
+        ageGroupList.forEach(tuple ->{
+            String ageGroup = tuple.get(user.age);
+            ageGroup = switch (Integer.parseInt(Objects.requireNonNull(ageGroup)) / 10) {
+                case 0, 1 -> "20대 미만";
+                case 2 -> "20대";
+                case 3 -> "30대";
+                case 4 -> "40대";
+                case 5 -> "50대";
+                default -> "60대 이상";
+            };
+            Long count = tuple.get(user.count());
+            ageGroupMap.put(ageGroup, ageGroupMap.getOrDefault(ageGroup, 0L) + count);
+        });
+
+
+        return ageGroupMap;
+    }
 
 }

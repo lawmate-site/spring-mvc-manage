@@ -11,6 +11,7 @@ public interface ManageService {
     List<UserStatsDto> findAll();
 
     List<UserStatsDto> findByMonth();
-    Map<String, Long> getGenderStats();
+
+    Map<String, Long> getUserTotalStats();
 
 }
